@@ -1,0 +1,78 @@
+<html>
+<head>
+<title>
+Proverb
+</title>
+<style>
+.click{
+height:10%;
+width:15%;
+font-family: open sans;
+border:5px solid red;
+background-color:white;
+color:black;
+font-size:18px;
+font-weight:bold;
+position:absolute;
+left:80%;
+right:0;
+top:10px;
+bottom:0;
+cursor:pointer;
+
+}
+.box{
+
+width:98%;
+height:20%;
+margin:10px;
+}
+
+#inputi{
+position:absolute;
+margin:auto;
+left:75%;
+right:0%;
+top:0%;
+bottom:70%;
+height:6%;
+width:15%;
+}
+</style>
+ <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+<script>
+
+function data(){
+        $(document).ready( function() {
+ var link = document.getElementById('inputi').value;
+ document.write(JSON.stringify("Place:"+link)+"<br>"+"<br>");
+	 
+
+       $.getJSON("https://api.openweathermap.org/data/2.5/weather?q="+link+"&APPID=96ed8ad08c63e175db9c8a55b3a0d77a" ,function(result){
+				$("div").append("<br>");
+			$("div").append(document.write(JSON.stringify("Latitude:"+result.coord.lat)+"<br>"));
+			$("div").append(document.write(JSON.stringify("Longitude:"+result.coord.lon)+"<br>"));
+			$("div").append(document.write(JSON.stringify("Temperture:"+result.main.temp)+"<br>"));
+			$("div").append(document.write(JSON.stringify("Humidity:"+result.main.humidity)+"<br>"));
+			$("div").append(document.write(JSON.stringify("Wind speed:"+result.wind.speed)+"<br>"));
+        }); 
+
+
+});
+
+// https://gist.github.com/BeatenBones/3a275d6ec92386d49c675468f23b6a87
+    }
+
+</script>
+<form onsubmit="data()">
+
+<input id="inputi" type="text" required placeholder="Enter the place"> 
+<div class="box"></div>
+
+<button class="click" type="submit">Search</button>
+</form>
+</body>
+</html>
+
