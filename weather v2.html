@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+  
+    <title>Welcome to Weather App!</title>
+  </head>
+  <body>
+  <script>
+function data(){
+        $(document).ready( function() {
+ var link = document.getElementById('inputi').value;
+ var info = $("#info")
+	 
+       $.getJSON("https://api.openweathermap.org/data/2.5/weather?q="+link+"&APPID=96ed8ad08c63e175db9c8a55b3a0d77a" ,function(result){
+				info.empty();
+				info.append("<h1 style='text-align:center'>"+"<b>"+result.name+"</b>"+"</h5>");
+				info.append("<hr>");
+		
+			info.append("Latitude: "+result.coord.lat+"<br>");
+			info.append("Longitude: "+result.coord.lon+"<br>");
+			info.append("Temperture: "+result.main.temp+"<br>");
+			info.append("Pressure: "+result.main.pressure+"<br>");
+			info.append("Humidity: "+result.main.humidity+"<br>");
+			info.append("Wind speed: "+result.wind.speed+"<br>");
+			
+			
+        }); 
+});
+// https://gist.github.com/BeatenBones/3a275d6ec92386d49c675468f23b6a87
+    }
+</script>
+  
+   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Weather <i class='fas fa-cloud-sun-rain' style='font-size:30px'></i></a>
+	  
+    </nav>
+	
+	
+	<div class="container ">
+	<div class="input-group mb-3 mt-5 ">
+  <input type="text" class="form-control form-control-lg"  id="inputi" placeholder="Search here" aria-label="Recipient's username" aria-describedby="basic-addon2">
+  <div class="input-group-append">
+    <button class="btn btn-outline-dark"  onclick="data()"  type="button">Search</button>
+  </div>
+</div>
+	
+	<div class="row mt-5 ">
+			 <div class="col-sm-3 " ></div>
+				 <div class="col-md-6 h2 text-center" id="info">
+				 
+				 <h1 class="mt-5 pt-5">No results yet</h1>
+				 <h2 >search ahead!</h1>
+				 </div>
+				  <div class="col-sm-3" ></div>
+	</div>
+</div>
+    
+  </body>
+</html>
